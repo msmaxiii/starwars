@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+
 import './App.css';
+import { render} from "react-dom";
+import { useState } from 'react';
+import { useEffect } from 'react';
+import axios from 'axios';
+
+const [state,setState]= useState('')
+
+
+useEffect(async() => {
+  const res = await axios.get(
+    'https://swapi.dev/api/starships/' 
+  )},[])
+ 
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+        <h1>STAR WARS STARSHIPS</h1>
       </header>
+      
     </div>
   );
 }
