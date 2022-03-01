@@ -1,29 +1,54 @@
-
+import { useState,useEffect } from 'react';
 import './App.css';
-import { render} from "react-dom";
-import { useState } from 'react';
-import { useEffect } from 'react';
-import axios from 'axios';
+import NavBar from './Components/NavBar'
+import { BrowerRouter} from 'react-router-dom';
+import { Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import StarShipCard from './Components/StarShipCard';
 
-const [state,setState]= useState('')
-
-
-useEffect(async() => {
-  const res = await axios.get(
-    'https://swapi.dev/api/starships/' 
-  )},[])
- 
 
 
 function App() {
+
+const [starships,setStarships]= useState([])
+const [loading,setLoading]= useState([])
+
+
+useEffect(() => {
+  async function fetchstarships(){
+    let res = await fetch ('https://swapi.dev/api/starships/' );
+    let data = await res.json();
+    setStarships(data.results);
+  }
+   
+  fetchstarships();
+  setLoading(false);
+    
+},[]) 
+ console.log('starShips')
+
+
+
   return (
-    <div className="App">
+  <>
+    
+
       <header>
         <h1>STAR WARS STARSHIPS</h1>
       </header>
+
+      <NavBar/>
+     
+       
+          <StarShipCard/>
+          <Route exact path ='/starshipcard'
       
-    </div>
-  );
-}
+
+  )
+
+     
+  }   
+  
+
 
 export default App;
